@@ -24,4 +24,12 @@ public class GreetingService {
     public List<Greeting> getAllGreetings() {
         return repo.findAll();
     }
+
+    public Greeting updateGreeting(Long id, String message) {
+        Greeting g = repo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Greeting not found"));
+
+        g.setMessage(message);
+        return repo.save(g);
+    }
 }
