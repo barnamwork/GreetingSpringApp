@@ -14,4 +14,9 @@ public class GreetingService {
     public Greeting saveGreeting(String message) {
         return repo.save(new Greeting(message));
     }
+
+    public Greeting getGreetingById(Long id) {
+        return repo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Greeting not found with id: " + id));
+    }
 }
