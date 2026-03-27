@@ -32,4 +32,12 @@ public class GreetingService {
         g.setMessage(message);
         return repo.save(g);
     }
+
+    public String deleteGreeting(Long id) {
+        Greeting g = repo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Greeting not found"));
+
+        repo.delete(g);
+        return "Deleted successfully";
+    }
 }
