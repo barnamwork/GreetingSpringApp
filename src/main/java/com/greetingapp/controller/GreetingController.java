@@ -1,30 +1,19 @@
 package com.greetingapp.controller;
 
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Map;
+import com.greetingapp.service.GreetingService;
 
 @RestController
 @RequestMapping("/greeting")
 public class GreetingController {
 
+    @Autowired
+    GreetingService service;
+
     @GetMapping
     public Map<String, String> getGreeting() {
-        return Map.of("message", "Hello from GET");
-    }
-
-    @PostMapping
-    public Map<String, String> postGreeting() {
-        return Map.of("message", "Hello from POST");
-    }
-
-    @PutMapping
-    public Map<String, String> putGreeting() {
-        return Map.of("message", "Hello from PUT");
-    }
-
-    @DeleteMapping
-    public Map<String, String> deleteGreeting() {
-        return Map.of("message", "Hello from DELETE");
+        return Map.of("message", service.getGreeting());
     }
 }
