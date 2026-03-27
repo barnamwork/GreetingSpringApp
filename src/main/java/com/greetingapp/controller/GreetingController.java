@@ -13,7 +13,10 @@ public class GreetingController {
     GreetingService service;
 
     @GetMapping
-    public Map<String, String> getGreeting() {
-        return Map.of("message", service.getGreeting());
+    public Map<String, String> getGreeting(
+            @RequestParam(required = false) String firstName,
+            @RequestParam(required = false) String lastName) {
+
+        return Map.of("message", service.getGreeting(firstName, lastName));
     }
 }
